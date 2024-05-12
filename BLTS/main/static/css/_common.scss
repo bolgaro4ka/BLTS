@@ -1,0 +1,77 @@
+@mixin centering {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+$primary-color: #f27d5f;
+$secondary-color: #85fcb0;
+$background-color: #41b3a3;
+$purple-color: #c98197;
+$yellow-color: #e9a97c;
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+.container {
+    max-width: 1440px;
+    margin: 0 auto;
+
+}
+
+button {
+    background-color: $primary-color;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+    &:hover {
+        background-color: $purple-color;
+    }
+}
+
+input {
+    margin-bottom: 10px;
+    height: 30px;
+    width: 100%;
+    border: none;
+    padding: 5px;
+}
+
+
+input:active {
+    outline: none;
+    border: 1px solid $primary-color;
+}
+
+input:hover {
+    outline: none;
+    border: 1px solid $primary-color;
+}
+
+form {
+    *, input :focus {
+        outline: none !important;
+        border: 1px solid $primary-color;
+        
+    }
+}
+
+header {
+    h1 {
+        font-size: 250%;
+    }
+}
+
+.register {
+    border: 2px solid $primary-color;
+    padding: 8px 18px;
+    background-color: rgba(0,0,0,0);
+}

@@ -1,0 +1,77 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
+
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+button {
+  background-color: #f27d5f;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+button:hover {
+  background-color: #c98197;
+}
+
+input {
+  margin-bottom: 10px;
+  height: 30px;
+  width: 100%;
+  border: none;
+  padding: 5px;
+}
+
+input:active {
+  outline: none;
+  border: 1px solid #f27d5f;
+}
+
+input:hover {
+  outline: none;
+  border: 1px solid #f27d5f;
+}
+
+form *, form input :focus {
+  outline: none !important;
+  border: 1px solid #f27d5f;
+}
+
+header h1 {
+  font-size: 250%;
+}
+
+.register {
+  border: 2px solid #f27d5f;
+  padding: 8px 18px;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+* {
+  color: black;
+}
+
+body {
+  display: flex;
+  gap: 20px;
+  background-color: white;
+  padding: 10px;
+}
+
+.img img {
+  max-width: 100%;
+  max-height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}/*# sourceMappingURL=task.css.map */

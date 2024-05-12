@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./static/js/gsap-public/minified/gsap.min.js"></script>
+    <script src="./static/js/gsap-public/minified/ScrollTrigger.min.js"></script>
+    <script src="./static/js/gsap-public/minified/TextPlugin.min.js"></script>
+    <script src="./static/js/gsap-public/minified/MotionPathPlugin.min.js"></script>
+    <script src="./static/js/gsap-public/minified/Draggable.min.js"></script>
+    <link rel="stylesheet" href="./static/css/index.css" />
+</head>
+<body>
+    <header>
+        <h1><a  href="/" style="text-decoration: none;">BLTS</a></h1>
+
+        <nav>
+            <a href="https://github.com/bolgaro4ka/BLTS">GitHub</a>
+            <a href="/admin">Админ-панель</a>
+            {% if user.is_authenticated %}
+                <button onclick="window.location.href = '/a/logout'">Выйти</button>
+            {% else %}
+                <button class="register" onclick="window.location.href = '/a/register'">Регистрация</button>
+                <button onclick="window.location.href = '/a/login'">Войти</button>
+            {% endif %}
+            
+        </nav>
+    </header>
+    <main>
+        <section class="hero">
+            <h1>BLTS - Bolgaro4ka Local Test System</h1>
+            <p>Локальная тестовая система для школ. Идеальна для любых потребностей.<br/> Сделано  <!--с ❤️ --> <a href="https://github.com/bolgaro4ka">Bolgaro4ka</a>.</p>
+            <button onclick="window.location.href = '/t'">Попробуйте</button>
+        </section>
+        <div class="sections">
+            <section class="section__1 section">
+                <h1>Простота</h1>
+                <p>Быстро, просто, удобно</p>
+            </section>
+            <section class="section__2 section">
+                <h2>У нас <span class="section__text-span">не списывают</span></h2>
+                <p>И мы делаем всё для этого</p>
+            </section>
+            <section class="section__3 section">
+                <img src="https://habrastorage.org/r/w1560/getpro/habr/post_images/1d5/28e/2cb/1d528e2cb5fbc29ad16c74e5d883c371.png">
+                <h1>Основная технология</h1>
+
+                
+
+
+                <div class="sec__small-imgs">
+                    <img src="https://velog.velcdn.com/images/real-bird/post/02bcad1d-daa1-4ec8-b26c-fef58d64fed7/image.png">
+                    <img src="https://gsap.com/community/uploads/monthly_2020_03/tweenmax.png.cf27916e926fbb328ff214f66b4c8429.png" alt="">
+                </div>
+                <h2>Остальные</h2>
+                
+
+            </section>
+            <section class="section__4 section"></section>
+            <section class="section__5 section"></section>
+            <section class="section__6 section"></section>
+        </div>
+        <section class="tryit">
+            <h1>BLTS - Bolgaro4ka Local Test System</h1>
+            <p>Чего же вы ждёте?</p>
+            <button>Попробуйте</button>
+        </section>
+    </main>
+    <footer>
+        <p>© 2024 Bolgaro4ka. Все права защищены.</p>
+    </footer>
+
+    
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger, Draggable, MotionPathPlugin, TextPlugin);
+        const sections = gsap.utils.toArray(".section");
+        const header = document.querySelector("header");
+        const footer = document.querySelector("footer");
+
+        gsap.to(sections, {
+            xPercent: -100 * (sections.length - 1),
+            
+            ease: "none",
+            scrollTrigger: {
+                trigger: ".sections",
+                pin: true,
+                scrub: 1,
+                snap: 1 / (sections.length - 1),
+                end: () => "+=" + document.querySelector(".sections").offsetWidth
+            }
+        });
+
+        gsap.to('.section__1>h1', {
+            scale: 2,
+            scrollTrigger: {
+                trigger: '.section',
+                start: 'top top',
+                end: () => "+=" + document.querySelector(".section").offsetWidth,
+                scrub: 1,
+                toggleActions: "play none none reverse",
+                
+            },
+        })
+    </script>
+
+    <script>
+        const tl = gsap.timeline({repeat: -1});
+        tl.to('.section__text-span', {duration: 1, delay: 1, text: {
+            value: "выполняют тесты",
+            newClass: 'none'
+        },});
+
+        tl.to('.section__text-span', {duration: 1, delay: 1, text: {
+            value: "развиваются",
+            newClass: 'none'
+        },});
+
+        tl.to('.section__text-span', {duration: 1, delay: 1, text: {
+            value: "не списывают",
+            newClass: 'none'
+        },});
+
+        gsap.to('footer', {
+            scale: 2,
+            scrollTrigger: {
+                trigger: 'footer',
+                start: 'top top',
+                pin: true,
+                end: () => "+=" + document.querySelector("footer").offsetHeight,
+                scrub: 1,
+                toggleActions: "play none none reverse",
+            },
+        })
+    </script>
+</body>
+</html>

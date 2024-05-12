@@ -1,0 +1,173 @@
+@import './_common.scss';
+
+* { 
+    overflow-x: hidden;
+    color: white;    
+}
+
+section {
+    @include centering;
+    height: 100vh;
+    flex-direction: column;
+    
+    
+}
+
+@for $i from 1 through 6 {
+    .section__#{$i} {
+        background-color: rgb(random(255), random(255), random(255));
+    }
+}
+
+.section__1 {
+    background-color: #83237c;
+}
+
+.section__2 {
+    background-color: $secondary-color;
+}
+
+.section__3 {
+    background-color: #103e2e;
+
+    img {
+        width: 500px;
+    }
+}
+
+.sections {
+
+
+    display: flex;
+    width: 600vw;
+    .section {
+        width: 100vw;
+        gap: 20px;
+        .sec__small-imgs {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            img {
+                width: 100px;
+                height: 100px;
+            }
+
+            img:nth-child(1) {
+                height: 60px;
+            }
+        }
+    }
+}
+
+header {
+    color: black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    position: fixed;
+    z-index: 999;
+
+    width: 100%;
+    transition: 0.3s;
+    nav {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    
+}
+
+.hero {
+    background-color: $background-color;
+    gap: 10px;
+    
+}
+
+
+
+.tryit {
+    gap: 20px;
+    background-color: #83237c;
+}
+
+footer {
+    background-color: black;
+    height: 100vh;
+    @include centering;
+}
+
+.hero {
+    form {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        input {
+            height: 30px;
+            width: 300px;
+            margin: 0;
+
+        }
+
+        button {
+            width: 100px;
+            
+            overflow-y: hidden;
+        }
+
+    }
+}
+
+.filters {
+    flex-wrap: wrap;
+    gap: 10px;
+    @include centering;
+
+    button {
+        border-radius: 20px;
+    }
+    width: 60%;
+}
+
+.cards {
+    height: auto;
+    
+    background-color: $primary-color;
+    padding: 20px 0;
+    gap: 20px;
+    flex-direction: row !important;
+
+    align-items: start;
+
+    .cards-true {
+        flex-direction: row !important;
+        align-items: start;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .card {
+        width: 200px;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        background-color: $background-color;
+        border-radius: 20px;
+        img {
+            width: 100%;
+            border-radius: 20px;
+            
+        }
+    }
+
+}
+

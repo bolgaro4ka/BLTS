@@ -1,0 +1,88 @@
+@import '../_common.scss';
+
+html {
+    background-color: $background-color;
+}
+
+* {
+    color: white;
+}
+.login__main {
+
+    width: 400px;
+    @include centering;
+    min-height: 100vh;
+    flex-direction: column;
+    gap: 10px;
+
+    a {
+        text-decoration: none;
+    }   
+
+    a:hover {
+        color: $purple-color;
+        transition: 0.3s;
+
+
+    }
+}
+
+form {
+    @include centering;
+        width: 100%;
+        flex-direction: column;
+    p {@include centering;
+        border: none !important;
+        width: 100%;
+        flex-direction: column;
+        color: black;
+        input {
+            color: black;
+            margin-bottom: 10px;
+            height: 30px;
+            width: 100%;
+            border: none;
+            padding: 5px;
+        }
+    
+        *, input :focus {
+            outline: none !important;
+            border: 1px solid $primary-color;
+            
+        }
+    
+        input:active {
+            outline: none;
+            border: 1px solid $primary-color;
+        }
+    
+        input:hover {
+            outline: none;
+            border: 1px solid $primary-color;
+        }}
+    
+
+    
+
+    
+
+
+}
+
+button {
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: $primary-color;
+    font-size: 16px;
+    width: 100%;
+    cursor: pointer;
+}
+
+.login__links {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    padding: 0 40px;
+}
+

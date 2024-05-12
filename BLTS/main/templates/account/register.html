@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../static/css/account/base.css">
+    <style>
+        li {
+            list-style-type: none;
+            border: none !important;
+        }
+
+        ul {
+            border: none !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="container login__main">
+        <h1>Регистрация</h1>
+        <form method="POST">
+                {{ form.as_p }}
+                {% csrf_token %}
+                <button type="submit">Регистрация</button>
+        </form>
+        <div class="login__links">
+            <a href="/a/login">Вход</a>
+            <p>|</p>
+            <a href="/">На главную</a>
+        </div>
+    </div>
+    <script>
+        document.querySelector("#id_username").placeholder = "Имя пользователя"
+        document.querySelector("#id_first_name").placeholder = "Имя"
+        document.querySelector("#id_email").placeholder = "Электронная почта"
+    </script>
+</body>
+</html>
