@@ -24,8 +24,9 @@ jobs:
     - name: Install Dependencies
       run: |
         python -m pip install --upgrade pip
-        cd BLTS
+        
         pip install -r req.txt
     - name: Run Tests
       run: |
+        cd BLTS
         python manage.py test
