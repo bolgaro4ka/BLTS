@@ -8,6 +8,7 @@ Bolgaro4ka Local Test System for Schools
 ```pip install -r req.txt```
 
 ```cd BLTS```
+
 ```py manage.py makemigrations```
 
 ```py manage.py migrate```
