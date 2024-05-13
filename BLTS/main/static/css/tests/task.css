@@ -63,6 +63,7 @@ header h1 {
 body {
   display: flex;
   gap: 20px;
+  justify-content: space-between;
   background-color: white;
   padding: 10px;
 }

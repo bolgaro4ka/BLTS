@@ -31,7 +31,7 @@ def test_view(request, id_test):
     for item in complete:
         corrects.append(item.task)
         
-
+    ans = Answer_from_user.objects.all().filter(user = request.user).filter( task = Test.objects.get(id=id_test).tasks.get(id=int(request.GET['id_task'])))[0].answer if Answer_from_user.objects.all().filter(user = request.user).filter( task = Test.objects.get(id=id_test).tasks.get(id=int(request.GET['id_task']))).exists() else ''
     if request.method == 'POST':
         form = TestSmallForm(request.POST)
         if form.is_valid():
@@ -55,7 +55,7 @@ def test_view(request, id_test):
         test = Test.objects.get(id=id_test).tasks.get(id=int(request.GET['id_task']))
         id_task = int(request.GET['id_task'])
         
-        return render(request, 'tests/index.html', {'task': test, 'tasks': tasks, 'len': len(tasks), 'id_task': id_task, 'id_test': id_test, 'form': form, 'complete': complete, 'answers': answers, 'corrects': corrects})
+        return render(request, 'tests/index.html', {'task': test, 'tasks': tasks, 'len': len(tasks), 'id_task': id_task, 'id_test': id_test, 'form': form, 'complete': complete, 'answers': answers, 'corrects': corrects, 'ans': ans})
     
 @xframe_options_exempt
 

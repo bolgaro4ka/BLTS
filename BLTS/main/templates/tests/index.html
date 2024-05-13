@@ -35,7 +35,7 @@
                     <button class="task" id="{{task.id}}" onclick="window.location.href = '/t/{{id_test}}/?id_task={{task.id}}&output=embed'">{{forloop.counter}}</button>
                 {% endif %}
             {% endfor %}
-            <button class="task">Завершить тест</button>
+            <button class="task" onclick="window.location.href = '/t/{{id_test}}/end'">Завершить тест</button>
         </section>
         <section class="iframe__task">
             <iframe src="/t/raw?id_test={{id_test}}&id_task={{id_task}}"></iframe>
@@ -43,10 +43,13 @@
         <form id="ans_form" method="POST">
             {{ form.as_p }}
             {% csrf_token %}
-            <button type="submit" id="ans_btn" >Submit</button>
+            <button type="submit" id="ans_btn">Submit</button>
         </form>
         
     </main>
-    
+    <script>
+        const ans_input = document.getElementById("answer");
+        ans_input.value = "{{ans}}";
+    </script>
 </body>
 </html>
