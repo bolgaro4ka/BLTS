@@ -28,5 +28,4 @@ jobs:
         pip install -r req.txt
     - name: Run Tests
       run: |
-        cd BLTS
         python manage.py test
