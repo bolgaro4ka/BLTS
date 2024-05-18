@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+{% load django_template_maths %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BLTS</title>
+    <script src="/static/js/gsap-public/minified/gsap.min.js"></script>
+    <script src="/static/js/gsap-public/minified/ScrollTrigger.min.js"></script>
+    <script src="/static/js/gsap-public/minified/TextPlugin.min.js"></script>
+    <script src="/static/js/gsap-public/minified/MotionPathPlugin.min.js"></script>
+    <script src="/static/js/gsap-public/minified/Draggable.min.js"></script>
+    <link rel="stylesheet" href="/static/css/index.css" />
+</head>
+<body>
+    <header>
+        <h1><a  href="/" style="text-decoration: none;">BLTS{% if session.id %}<sub style="font-size: 24px;">/session №{{session.id}}</sub>{% endif %}</a></h1>
+
+        <nav>
+            <a href="https://github.com/bolgaro4ka/BLTS">GitHub</a>
+            <a href="/admin">Админ-панель</a>
+            <a href="/s">Сессии</a>
+            <a href="/t">Тесты</a>
+            {% if user.is_authenticated %}
+                <button onclick="window.location.href = '/a/logout'">Выйти</button>
+            {% else %}
+                <button class="register" onclick="window.location.href = '/a/register'">Регистрация</button>
+                <button onclick="window.location.href = '/a/login'">Войти</button>
+            {% endif %}
+            
+        </nav>
+    </header>
+    <main>
+    <section class="hero">
+            <h1>Сессия №{{session.id}} - {{session.title}}</h1>
+            <ol>
+                {% if answers %}
+                    {% for item in answers %}
+                        <li class="item" style="align-items: center;">{{item.user.first_name}} {{item.user.last_name}} ({{item.user}}) - <b style="font-weight: 900;">{{item.points}}</b></li>
+                    {% endfor %}
+                {% else %}
+                    <p>😭 Пока что никто не ответил в этой сессии</p>
+                {% endif %}
+            </ol>
+    </section>
+    </main>
+    <script type='module'>
+            
+
+        let items = document.querySelectorAll('.item')
+        let oldLen = await fetch('/s/leaderboard/api/{{session.id}}').then(response => response.json()).len;
+        let char = await fetch('https://emoji-api.com/emojis?access_key=e7b21cb9d83ce1a6c37630186bff154206d5dfa3')
+        let res = await char.json(); // читаем ответ в формате JSON
+        for (let i = 0; i < items.length; i++) {
+            
+              
+            console.warn(res)
+            char = res[Math.floor((res.length-1) * Math.random())].character
+            console.warn(char)
+            items[i].innerHTML = `<span style="font-size: 24px;">${char}</span>       ${items[i].innerHTML}`
+            }
+
+
+        window.setInterval(async () => {
+            console.info('reload list')
+            let len = await fetch('/s/leaderboard/api/{{session.id}}').then(response => response.json()).len;
+            if (len > oldLen) {
+                window.location.reload()
+            }
+            
+        }, 5000)
+    </script>
+</body>
+</html>

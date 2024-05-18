@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BLTS</title>
+    <link rel="stylesheet" href="/static/css/account/base.css">
+</head>
+<body>
+    <div class="container login__main">
+        <h1>Вход</h1>
+        <form  method="POST">
+            {{ form.as_p }}
+            {% csrf_token %}
+            <button type="submit">Войти</button>
+        </form>
+        <div class="login__links">
+            <a href="/a/register">Регистрация</a>
+            <p>|</p>
+            <a href="/">На главную</a>
+        </div>
+    </div>
+</body>
+</html>

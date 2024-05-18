@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BLTS</title>
+    <script src="/static/js/gsap-public/minified/gsap.min.js"></script>
+    <script src="/static/js/gsap-public/minified/ScrollTrigger.min.js"></script>
+    <script src="/static/js/gsap-public/minified/TextPlugin.min.js"></script>
+    <script src="/static/js/gsap-public/minified/MotionPathPlugin.min.js"></script>
+    <script src="/static/js/gsap-public/minified/Draggable.min.js"></script>
+    <link rel="stylesheet" href="/static/css/index.css" />
+</head>
+<body>
+    <header>
+        <h1><a  href="/" style="text-decoration: none;">BLTS</a></h1>
+
+        <nav>
+            <a href="https://github.com/bolgaro4ka/BLTS">GitHub</a>
+            <a href="/admin">Админ-панель</a>
+            <a href="/s">Сессии</a>
+            <a href="/t">Тесты</a>
+            {% if user.is_authenticated %}
+                <button onclick="window.location.href = '/a/logout'">Выйти</button>
+            {% else %}
+                <button class="register" onclick="window.location.href = '/a/register'">Регистрация</button>
+                <button onclick="window.location.href = '/a/login'">Войти</button>
+            {% endif %}
+            
+        </nav>
+    </header>
+    <main>
+        <section class="hero">
+            <h1 style="color: #f27d5f;">{{error.name}}</h1>
+            <p>{{error.message}}</p>
+            <img src="{{error.img}}" alt="" style="height: 500px;">
+            <div class="login__links" style="display: flex; gap: 20px;">
+                <a href="/a/login" >Вход</a>
+                <p>|</p>
+                <a href="/">На главную</a>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

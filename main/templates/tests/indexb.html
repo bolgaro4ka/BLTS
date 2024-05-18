@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BLTS</title>
+    <script type="module" defer>
+        (async ({ chrome, netscape }) => { if (!chrome && !netscape) await import('https://unpkg.com/@ungap/custom-elements'); const { default: HighlightedCode } = await import('https://unpkg.com/highlighted-code'); HighlightedCode.useTheme('github-dark'); })(self);
+    </script>
+    <script src="/static/js/gsap-public/minified/gsap.min.js"></script>
+    <script src="/static/js/gsap-public/minified/TextPlugin.min.js"></script>
+    <script src="/static/js/gsap-public/minified/MotionPathPlugin.min.js"></script>
+    <script src="/static/js/gsap-public/minified/Draggable.min.js"></script>
+    <link rel="stylesheet" href="/static/css/tests/index.css" />
+</head>
+<body>
+    <header>
+        <h1><a  href="/" style="text-decoration: none;">BLTS{% if session_id %}<sub style="font-size: 24px;">/session №{{session_id}}</sub>{% endif %}</a></h1>
+
+        <nav>
+            <a href="https://github.com/bolgaro4ka/BLTS">GitHub</a>
+            <a href="/admin">Админ-панель</a>
+            <a href="/s">Сессии</a>
+            <a href="/t">Тесты</a>
+            {% if user.is_authenticated %}
+                <button onclick="window.location.href = '/a/logout'">Выйти</button>
+            {% else %}
+                <button class="register" onclick="window.location.href = '/a/register'">Регистрация</button>
+                <button onclick="window.location.href = '/a/login'">Войти</button>
+            {% endif %}
+            
+        </nav>
+    </header>
+    
+    <main class="b-main">
+        <section class="buttons">
+            {% for task in tasks%}
+                {% if task in corrects %}
+                    <button class="task" style="background-color: #449261;" id="{{task.id}}" onclick="window.location.href = '/t/{{id_test}}/?id_task={{task.id}}{% if session_id %}&session={{session_id}}{% endif %}'">{{forloop.counter}}</button>
+                {% else %}
+                    <button class="task" id="{{task.id}}" onclick="window.location.href = '/t/{{id_test}}/?id_task={{task.id}}{% if session_id %}&session={{session_id}}{% endif %}'">{{forloop.counter}}</button>
+                {% endif %}
+            {% endfor %}
+           
+            {% if session_id %}
+            <button class="task" onclick="window.location.href = '/s/{{session_id}}'">Завершить тест</button>
+            <button class="task" onclick="window.location.href = '/s/leaderboard/{{session_id}}'">Лидерборд</button>
+            {%  else %}
+            <button class="task" onclick="window.location.href = '/t/{{id_test}}/end'">Завершить тест</button>
+            {% endif %}
+        </section>
+        <div class="b-main__content">
+            <div class="content">
+                
+                <section class="iframe__task">
+                    <iframe src="/t/raw?id_test={{id_test}}&id_task={{id_task}}"></iframe>
+                </section>
+            </div>
+            <form id="ans_form" method="POST">
+            {{ form.as_p }}
+            {% csrf_token %}
+            <p>
+            <button type="submit" id="ans_btn">Submit</button>
+            </p>
+        </form>
+    </div>
+    </main>
+    <script>
+        const ans_input = document.getElementById("answer");
+        ans_input.value = "{{ans}}";
+    </script>
+</body>
+</html>

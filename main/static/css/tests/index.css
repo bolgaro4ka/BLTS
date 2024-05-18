@@ -1,0 +1,179 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
+
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+button {
+  background-color: #f27d5f;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+button:hover {
+  background-color: #c98197;
+}
+
+input {
+  margin-bottom: 10px;
+  height: 30px;
+  width: 100%;
+  border: none;
+  padding: 5px;
+}
+
+input:active {
+  outline: none;
+  border: 1px solid #f27d5f;
+}
+
+input:hover {
+  outline: none;
+  border: 1px solid #f27d5f;
+}
+
+form *, form input :focus {
+  outline: none !important;
+  border: 1px solid #f27d5f;
+}
+
+header h1 {
+  font-size: 250%;
+}
+
+.register {
+  border: 2px solid #f27d5f;
+  padding: 8px 18px;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #41b3a3;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  width: 100%;
+  transition: 0.3s;
+}
+header nav {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+header a {
+  text-decoration: none;
+  color: white;
+}
+header h1 {
+  color: white;
+}
+
+main {
+  padding: 10px;
+}
+
+.task {
+  padding: 10px 20px;
+  font-size: 110%;
+}
+
+.iframe__task {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-top: 20px;
+}
+.iframe__task iframe {
+  border-radius: 15px;
+  padding: 10px;
+  width: 100%;
+  height: 60vh;
+  border: none;
+}
+
+p {
+  width: 80%;
+  align-self: center;
+  margin: 0;
+  border: none;
+  border-radius: 8px;
+  margin-right: 1vw;
+}
+
+#answer {
+  width: 100%;
+  align-self: center;
+  margin: 0;
+  border-radius: 8px;
+  margin-right: 1vw;
+}
+
+#ans_btn {
+  width: 20%;
+}
+
+#ans_form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-top: 20px;
+  padding: 0 1.3vw;
+}
+
+.b-main__content {
+  display: flex;
+  height: 68vh;
+}
+.b-main__content .content {
+  width: 49vw;
+  margin-right: 2vw;
+}
+.b-main__content #ans_form {
+  justify-content: start !important;
+  padding: 0;
+}
+.b-main__content form {
+  height: 100%;
+  width: 49vw;
+  flex-direction: column;
+}
+.b-main__content form .iframe__task {
+  margin-top: 0 !important;
+}
+.b-main__content form #answer {
+  width: 100%;
+  margin-top: 0 !important;
+  height: 58vh;
+  margin: 0;
+  margin-bottom: 20px;
+  margin-top: 10px !important;
+}
+.b-main__content form p {
+  width: 100%;
+}
+.b-main__content form #ans_btn {
+  width: 100%;
+  margin: 0;
+}
+.b-main__content form textarea {
+  padding: 5px;
+}/*# sourceMappingURL=index.css.map */
