@@ -60,6 +60,7 @@ Backend разработан на: **Django (Python)**
 ![image](https://github.com/bolgaro4ka/BLTS/assets/123888141/09ef5e22-5019-434f-a4b6-e20417fe2a03)
 
 
+## Introduction (Eng)
 This test system is designed for schools. In it you can create tests, sessions, assignments. There is also a leaderboard for sessions.
 
 Language: **Russian**
@@ -68,7 +69,7 @@ Backend developed in: **Django (Python)**
 
 Supports running from container (Docker)
 
-## Installation
+## Installation and start
 
 ### Using Docker:
 - Download this repository
@@ -86,7 +87,7 @@ The project will start on port 80 at the internal IP address (0.0.0.0.0)
 ### Create a new super administrator (Docker)
 Run the command: `docker-compose run blts python manage.py createsuperuser`.
 
-### By hand
+### By hand (installation and start)
 - Download this repository
 - Install Python (https://python.org/)
 - Open it in terminal or Git Bash
@@ -94,7 +95,7 @@ Run the command: `docker-compose run blts python manage.py createsuperuser`.
 - Next, 2 options:
   - For a quick start run the command: `python s.py <your_ip_address> <port>`. For example: `python s.py 192.168.0.16 80`.
   - Long version:
-      - Execute the commands given below:
+      - Execute the commands given below (they need to be executed once except for the last one because it starts the server):
           - `py manage.py makemigrations`.
           - `python manage.py makemigrations account`
           - `python manage.py makemigrations main`
