@@ -23,6 +23,7 @@ os.system("python manage.py makemigrations session")
 os.system("python manage.py makemigrations tests")
 os.system("python manage.py migrate")
 
-print(Fore.GREEN+'Сервер запущен! Откройте в браузере http://{}:{}. Нажмите Ctrl+C для выхода. Good job!'.format(args.ip, args.port))
 print(Fore.YELLOW+'Внимание! Чтобы создать суперпользователя для админ панели выполните команду: python manage.py createsuperuser')
+print(Fore.GREEN+'Сервер запущен! Откройте в браузере http://{}:{}. Нажмите Ctrl+C для выхода. Good job!'.format(args.ip, args.port))
+
 os.system(f"python manage.py runserver {args.ip}:{args.port}")
