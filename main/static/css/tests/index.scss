@@ -133,3 +133,43 @@ p {
         }        
     }
 }
+
+#instructions {
+    display: none;
+}
+
+.openInstructions {
+    display: block !important;
+    position: absolute !important;
+    z-index: 100 !important;
+    width: 100% !important;
+    height: 100% !important;
+    background-color: rgba(0, 0, 0, 0.5) !important;
+    top: 0 !important;
+    gap: 10px !important;
+    right: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex-direction: column !important;
+
+    button {
+        cursor: pointer !important;
+        
+        &:hover {
+            background-color: $purple-color;
+            transition: 0.3s;
+        }
+    }
+
+    .text {
+        width: 60%;
+        margin: 0 auto;
+        text-align: center;
+        color: white;
+    }
+    
+
+
+
+}

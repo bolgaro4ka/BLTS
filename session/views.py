@@ -1,12 +1,13 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Session
-
-from tests.views import add_test_ans
+from django.views.decorators.clickjacking import xframe_options_exempt
 from django.http import HttpResponse, JsonResponse
 
-from tests.models import Tests_for_user, Test
+from tests.models import Tests_for_user, Test, Answer_from_user
 
 from django.contrib.auth.decorators import login_required
+
+from tests.views import add_test_ans
 
 # Create your views here.
 def index(request):
@@ -30,12 +31,15 @@ def index(request):
 
 @login_required(login_url='/a/login')
 def session(request, id):
+
+    res = add_test_ans(request, Session.objects.get(id=id).test)
+
+
     session = Session.objects.get(id=id)
     session.users.add(request.user)
     session.answers.add(Tests_for_user.objects.get(user = request.user, test = session.test))
-    session.save()
 
-    res = add_test_ans(request, session.test)
+    session.save()
 
 
     answers = session.answers.all()

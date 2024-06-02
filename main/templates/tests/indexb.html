@@ -41,6 +41,10 @@
                     <button class="task" id="{{task.id}}" onclick="window.location.href = '/t/{{id_test}}/?id_task={{task.id}}{% if session_id %}&session={{session_id}}{% endif %}'">{{forloop.counter}}</button>
                 {% endif %}
             {% endfor %}
+
+            {% if instruction %}
+                <button class="task" onclick="toggleInstructions('open')">Инструкция</button>
+            {% endif %}
            
             {% if session_id %}
             <button class="task" onclick="window.location.href = '/s/{{session_id}}'">Завершить тест</button>
@@ -60,14 +64,76 @@
             {{ form.as_p }}
             {% csrf_token %}
             <p>
-            <button type="submit" id="ans_btn">Submit</button>
+            <button type="submit" id="ans_btn">Отправить</button>
             </p>
         </form>
     </div>
     </main>
+    <div id="instructions" style="display: none;">
+        <div class="text">{{ instruction|safe }}</div>
+        
+
+        <button onclick="toggleInstructions('close')">Закрыть</button>
+    </div>
     <script>
         const ans_input = document.getElementById("answer");
         ans_input.value = "{{ans}}";
+
+        function toggleInstructions(status) {
+            const instructions = document.getElementById("instructions");
+
+            if (status === "close") {
+                instructions.className = "none";
+                document.querySelector("main").style.filter = "blur(0)";
+                document.querySelector("header").style.filter = "blur(0)";
+                return;
+            }
+
+            if (instructions.style.display === "none") {
+                instructions.className = "openInstructions";
+                document.querySelector("main").style.filter = "blur(5px)";
+                document.querySelector("header").style.filter = "blur(5px)";
+            } else {
+                instructions.style.display = "none";
+            }
+        }
+
+        {% if cheating %}
+            console.warn("В настройках теста убрана проверка на честность!")
+        {% else %}
+            var hidden, visibilityChange;
+            if (typeof document.hidden !== "undefined") {
+            // Opera 12.10 and Firefox 18 and later support
+            hidden = "hidden";
+            visibilityChange = "visibilitychange";
+            } else if (typeof document.msHidden !== "undefined") {
+            hidden = "msHidden";
+            visibilityChange = "msvisibilitychange";
+            } else if (typeof document.webkitHidden !== "undefined") {
+            hidden = "webkitHidden";
+            visibilityChange = "webkitvisibilitychange";
+            }
+
+            function handleVisibilityChange() {
+                if (document[hidden]) {
+                    if(!(window.location.href.includes("/t/{{id_test}}") )){alert("Куда мы лезим?")}
+                
+                } else {
+                alert("Куда мы лезим?!")
+                window.location.href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+                }
+            }
+            
+        if (typeof document.addEventListener === "undefined" || hidden === undefined) {
+            console.log(
+                "This demo requires a browser, such as Google Chrome or Firefox, that supports the Page Visibility API.",
+            );
+            } else {
+            // Handle page visibility change
+            document.addEventListener(visibilityChange, handleVisibilityChange, false);
+
+            }
+        {% endif %}
     </script>
 </body>
 </html>

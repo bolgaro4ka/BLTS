@@ -30,6 +30,7 @@ class Task(models.Model):
     theme = models.ForeignKey(Theme, on_delete=models.CASCADE, verbose_name='Тема')
     extend_ans_field = models.BooleanField(verbose_name='Расширенное поле для ввода ответа')
     auto_check = models.BooleanField(verbose_name='Автоматическая проверка')
+    
 
     class Meta:
         verbose_name = 'Задание'
@@ -45,8 +46,11 @@ class Test(models.Model):
     tasks = models.ManyToManyField(Task, verbose_name='Задания')
     theme = models.ForeignKey(Theme, on_delete=models.CASCADE, verbose_name='Тема')
     description = models.TextField(verbose_name='Описание', null=True, blank=True)
+    instructions = models.TextField(verbose_name='Инструкции к работе', null=True, blank=True, help_text='Можно использовать HTML-теги')
     img = models.ImageField(upload_to='tests/img/%Y/%m/%d', verbose_name='Картинка', null=True, blank=True)
     is_published = models.BooleanField(verbose_name='Опубликовано', default=False)
+    cheating = models.BooleanField(verbose_name='Можно ли переключаться на другие вкладки во время теста', default=False)
+    
 
 
     def __str__(self):

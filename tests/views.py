@@ -90,6 +90,9 @@ def test_view(request, id_test):
     id_task = int(request.GET['id_task'])
 
     task = Task.objects.get(id=id_task)
+
+    cheating = Test.objects.get(id=id_test).cheating
+    instruction = Test.objects.get(id=id_test).instructions
         
     ans = Answer_from_user.objects.all().filter(user = request.user).filter( task = Test.objects.get(id=id_test).tasks.get(id=int(request.GET['id_task'])))[0].answer if Answer_from_user.objects.all().filter(user = request.user).filter( task = Test.objects.get(id=id_test).tasks.get(id=int(request.GET['id_task']))).exists() else ''
     if request.method == 'POST':
@@ -116,16 +119,15 @@ def test_view(request, id_test):
         test = Test.objects.get(id=id_test).tasks.get(id=int(request.GET['id_task']))
         
         if task.extend_ans_field:
-            return render(request, 'tests/indexb.html', {'task': test, 'tasks': tasks, 'len': len(tasks), 'id_task': id_task, 'id_test': id_test, 'form': form, 'complete': complete, 'answers': answers, 'corrects': corrects, 'ans': ans, 'session_id': session_id if session_id else ''})
+            return render(request, 'tests/indexb.html', {'task': test, 'tasks': tasks, 'len': len(tasks), 'id_task': id_task, 'id_test': id_test, 'form': form, 'complete': complete, 'answers': answers, 'corrects': corrects, 'ans': ans, 'session_id': session_id if session_id else '', 'cheating': cheating, 'instruction': instruction})
         
-        return render(request, 'tests/index.html', {'task': test, 'tasks': tasks, 'len': len(tasks), 'id_task': id_task, 'id_test': id_test, 'form': form, 'complete': complete, 'answers': answers, 'corrects': corrects, 'ans': ans, 'session_id': session_id if session_id else ''})
+        return render(request, 'tests/index.html', {'task': test, 'tasks': tasks, 'len': len(tasks), 'id_task': id_task, 'id_test': id_test, 'form': form, 'complete': complete, 'answers': answers, 'corrects': corrects, 'ans': ans, 'session_id': session_id if session_id else '', 'cheating': cheating, 'instruction': instruction})
     
 @xframe_options_exempt
 
 def test_view_iframe(request):
     if request.method == 'GET':
-        print(Test.objects.get(id=int(request.GET['id_task'])).tasks.all())
-        test = Test.objects.get(id=int(request.GET['id_task'])).tasks.get(id=int(request.GET['id_task']))
+        test = Test.objects.get(id=int(request.GET['id_test'])).tasks.get(id=int(request.GET['id_task']))
         return render(request, 'tests/task.html', {'task': test})
 
 

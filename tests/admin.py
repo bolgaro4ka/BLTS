@@ -13,7 +13,10 @@ admin.site.index_title = 'BLTS'
 
 class TestAdmin(admin.ModelAdmin):
     filter_horizontal = ('tasks', )
-    pass
+    list_display = ('title', 'theme', 'description', 'is_published', 'cheating', )
+    list_filter = ('theme', )
+    search_fields = ('title', 'theme', 'description', 'instructions', )
+    list_editable = ('theme', 'is_published', 'cheating', )
 admin.site.register(Test, TestAdmin)
 
 class ThemeAdmin(admin.ModelAdmin):

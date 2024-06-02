@@ -48,7 +48,7 @@
             
 
         let items = document.querySelectorAll('.item')
-        let oldLen = await fetch('/s/leaderboard/api/{{session.id}}').then(response => response.json()).len;
+        let oldLen = await fetch('/s/leaderboard/api/{{session.id}}').then(response => response.json()).then(res => res.len);
         let char = await fetch('https://emoji-api.com/emojis?access_key=e7b21cb9d83ce1a6c37630186bff154206d5dfa3')
         let res = await char.json(); // читаем ответ в формате JSON
         for (let i = 0; i < items.length; i++) {
@@ -63,10 +63,12 @@
 
         window.setInterval(async () => {
             console.info('reload list')
-            let len = await fetch('/s/leaderboard/api/{{session.id}}').then(response => response.json()).len;
-            if (len > oldLen) {
+            let len = await fetch('/s/leaderboard/api/{{session.id}}').then(response => response.json()).then(res => res.len);
+            if (len != oldLen) {
                 window.location.reload()
             }
+
+            console.info(len, oldLen)
             
         }, 5000)
     </script>
