@@ -2,6 +2,13 @@ import os
 
 import argparse
 from colorama import init, Fore, Back
+try:
+  import django
+  print(Fore.GREEN+'Django импортируется!')
+except:
+  print(Fore.RED+'Модуль django не найден!')
+  os.system('pip install -r req.txt') if input(Fore.RED+'Установить все модули? (д/н): ').lower() == 'д' else print(Fore.RED+'Ну тогда устанавливайте сами. (Программа продолжит работу с ошибками)')
+ 
 
 init(autoreset=True)
 
