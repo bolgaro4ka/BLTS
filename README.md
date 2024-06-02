@@ -112,6 +112,5 @@ Run the command: `python manage.py createsuperuser`.
 Everything is in the admin panel! Just go there under superuser and edit the required fields.
 ![image](https://github.com/bolgaro4ka/BLTS/assets/123888141/b346ec3a-fe34-4af8-b3de-1c67539f4b9a)
 
-# Version: 1.0.0-AD
+# Version: 1.1.0-AD
 # By Bolgaro4ka (https://github.com/bolgaro4ka)
-
