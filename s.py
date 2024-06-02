@@ -1,14 +1,20 @@
 import os
 
 import argparse
+try:
+    from colorama import init, Fore, Back
+except:
+    print('Модуль colorama не найден! Установка...')
+    os.system('pip install colorama')
+
 from colorama import init, Fore, Back
 try:
   import django
-  print(Fore.GREEN+'Django импортируется!')
+  print('Django импортируется!')
 except:
   print(Fore.RED+'Модуль django не найден!')
   os.system('pip install -r req.txt') if input(Fore.RED+'Установить все модули? (д/н): ').lower() == 'д' else print(Fore.RED+'Ну тогда устанавливайте сами. (Программа продолжит работу с ошибками)')
- 
+
 
 init(autoreset=True)
 
@@ -32,5 +38,4 @@ os.system("python manage.py migrate")
 
 print(Fore.YELLOW+'Внимание! Чтобы создать суперпользователя для админ панели выполните команду: python manage.py createsuperuser')
 print(Fore.GREEN+'Сервер запущен! Откройте в браузере http://{}:{}. Нажмите Ctrl+C для выхода. Good job!'.format(args.ip, args.port))
-
 os.system(f"python manage.py runserver {args.ip}:{args.port}")
